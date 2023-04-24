@@ -15,16 +15,12 @@ import com.android.asteroidradar.database.AsteroidDatabase
 import com.android.asteroidradar.database.PictureDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-
-enum class ApiFilter(val value : String) {
-    SHOW_WEEK("week"), SHOW_DAY("day"), SHOW_ALL("saved")}
-
-data class AsteroidState(val loading: Boolean, val asteroids: List<Asteroid>)
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -38,18 +34,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         AsteroidDatabase.getInstance(application).pictureDao()
     }
 
-    private val _state: MutableStateFlow<AsteroidState> =
-        MutableStateFlow(AsteroidState(true, emptyList()))
-
+    private val _state = MutableStateFlow(AsteroidState(true, emptyList()))
     val state = _state.asStateFlow()
 
     private lateinit var cachedAsteroids: List<Asteroid>
 
     val loadingState = state.map { value -> value.loading }
-
-    private val _response = MutableLiveData<List<Asteroid>>()
-    val response : LiveData<List<Asteroid>>
-    get() = _response
 
     private val _pictureUrl = MutableLiveData<String>()
     val pictureUrl : LiveData<String>
@@ -62,9 +52,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-
-            _response.value = getAsteroids()
-
             val asteroids = getAsteroids()
             _state.value = AsteroidState(false, asteroids)
             cachedAsteroids = asteroids
@@ -88,15 +75,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             when(filter){
                 ApiFilter.SHOW_DAY -> {
-                    _response.value = asteroidDao.getTodayAsteroids(getToday())
+                    val asteroids = asteroidDao.getTodayAsteroids(getToday())
+                    _state.value = AsteroidState(false, asteroids)
                 }
 
                 ApiFilter.SHOW_WEEK -> {
-                    _response.value = asteroidDao.getWeekAsteroids(getToday(), getSeventhDay())
+                    val asteroids = asteroidDao.getWeekAsteroids(getToday(), getSeventhDay())
+                    _state.value = AsteroidState(false, asteroids)
                 }
 
                 else -> {
-                    _response.value = asteroidDao.getAllAsteroids()
+                    val asteroids = asteroidDao.getAllAsteroids()
+                    _state.value = AsteroidState(false, asteroids)
                 }
             }
         }
@@ -133,3 +123,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 }
 
+data class AsteroidState(val loading: Boolean, val asteroids: List<Asteroid>)
+
+enum class ApiFilter(val value : String) { SHOW_WEEK("week"), SHOW_DAY("day"), SHOW_ALL("saved")}

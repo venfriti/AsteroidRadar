@@ -2,12 +2,19 @@ package com.android.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.asteroidradar.R
 import com.android.asteroidradar.databinding.FragmentMainBinding
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
@@ -15,15 +22,26 @@ class MainFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
+    private lateinit var asteroidAdapter: AsteroidAdapter
+
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = FragmentMainBinding.inflate(inflater)
+        _binding = FragmentMainBinding.inflate(inflater)
+
         binding.lifecycleOwner = this
 
-        val adapter = AsteroidAdapter(AsteroidListener {
-            asteroid -> viewModel.onNavigateClicked(asteroid)
-        })
-        binding.asteroidRecycler.adapter = adapter
+        binding.viewModel = viewModel
+
+        setHasOptionsMenu(true)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.navigateToDetailFragment.observe(viewLifecycleOwner, Observer{asteroid ->
             asteroid?.let {
@@ -35,22 +53,24 @@ class MainFragment : Fragment() {
             }
         })
 
-        viewModel.response.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.submitList(it)
-            }
-        }
+        val adapter = AsteroidAdapter(AsteroidListener {
+                asteroid -> viewModel.onNavigateClicked(asteroid)
+        })
+        binding.asteroidRecycler.adapter = adapter
 
+        viewModel.state.onEach { asteroidState ->
+            adapter.submitList(asteroidState.asteroids)
+        }.launchIn(lifecycleScope)
 
-        binding.viewModel = viewModel
+        viewModel.loadingState.onEach { isLoading ->
+            binding.statusLoadingWheel.isVisible = isLoading
+        }.launchIn(lifecycleScope)
 
-        setHasOptionsMenu(true)
-
-        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
