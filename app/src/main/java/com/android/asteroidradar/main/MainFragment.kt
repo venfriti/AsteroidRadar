@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -18,8 +17,6 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
-
-    private lateinit var asteroidAdapter: AsteroidAdapter
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -40,7 +37,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.navigateToDetailFragment.observe(viewLifecycleOwner, Observer{asteroid ->
+        viewModel.navigateToDetailFragment.observe(viewLifecycleOwner) { asteroid ->
             asteroid?.let {
                 this.findNavController().navigate(
                     MainFragmentDirections
@@ -48,7 +45,7 @@ class MainFragment : Fragment() {
                 )
                 viewModel.onNavigateToDetailFragment()
             }
-        })
+        }
 
         val adapter = AsteroidAdapter(AsteroidListener {
                 asteroid -> viewModel.onNavigateClicked(asteroid)
