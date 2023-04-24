@@ -5,11 +5,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import coil.load
-import com.squareup.picasso.Picasso
 import com.android.asteroidradar.R
 import com.android.asteroidradar.main.PictureState
 import com.android.asteroidradar.models.Asteroid
-import com.android.asteroidradar.models.PictureOfDay
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {

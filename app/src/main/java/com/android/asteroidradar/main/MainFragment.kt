@@ -2,7 +2,6 @@ package com.android.asteroidradar.main
 
 import android.os.Bundle
 import android.view.*
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,10 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.android.asteroidradar.R
 import com.android.asteroidradar.databinding.FragmentMainBinding
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 

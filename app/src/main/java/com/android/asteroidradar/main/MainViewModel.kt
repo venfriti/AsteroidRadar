@@ -6,7 +6,6 @@ import com.android.asteroidradar.api.NetworkRequest
 import com.android.asteroidradar.api.getSeventhDay
 import com.android.asteroidradar.api.getToday
 import com.android.asteroidradar.api.parseAsteroidsJsonResult
-import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.android.asteroidradar.models.Asteroid
 import com.android.asteroidradar.models.PictureOfDay
@@ -15,7 +14,6 @@ import com.android.asteroidradar.database.AsteroidDatabase
 import com.android.asteroidradar.database.PictureDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
