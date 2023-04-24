@@ -37,13 +37,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _state = MutableStateFlow(AsteroidState(true, emptyList()))
     val state = _state.asStateFlow()
 
+    private val _pictureUrl = MutableLiveData(PictureState(null))
+    val pictureUrl : LiveData<PictureState> = _pictureUrl
+
     private lateinit var cachedAsteroids: List<Asteroid>
 
     val loadingState = state.map { value -> value.loading }
-
-    private val _pictureUrl = MutableLiveData<String>()
-    val pictureUrl : LiveData<String>
-    get() = _pictureUrl
 
     private val _navigateToDetailFragment = MutableLiveData<Asteroid>()
     val navigateToDetailFragment : LiveData<Asteroid>
@@ -56,7 +55,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _state.value = AsteroidState(false, asteroids)
             cachedAsteroids = asteroids
 
-            _pictureUrl.value = getPictureOfTheDay().url
+            _pictureUrl.value = PictureState(getPictureOfTheDay())
         }
     }
 
@@ -100,7 +99,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 getSeventhDay()
             )
 
-            val jsonObject: JsonObject = JsonParser.parseString(response.toString()).asJsonObject
+            val jsonObject = JsonParser.parseString(response.toString()).asJsonObject
             val jsonResult = JSONObject(jsonObject.toString())
             val listAsteroids = parseAsteroidsJsonResult(jsonResult)
 
@@ -124,5 +123,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 }
 
 data class AsteroidState(val loading: Boolean, val asteroids: List<Asteroid>)
+
+data class PictureState(val pictureUrl: PictureOfDay?)
 
 enum class ApiFilter(val value : String) { SHOW_WEEK("week"), SHOW_DAY("day"), SHOW_ALL("saved")}

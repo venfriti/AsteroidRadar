@@ -3,9 +3,13 @@ package com.android.asteroidradar.utils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
+import coil.load
 import com.squareup.picasso.Picasso
 import com.android.asteroidradar.R
+import com.android.asteroidradar.main.PictureState
 import com.android.asteroidradar.models.Asteroid
+import com.android.asteroidradar.models.PictureOfDay
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -17,10 +21,8 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 }
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: ImageView, imgUrl: String?){
-    imgUrl?.let{
-        Picasso.get().load(imgUrl).into(imgView)
-    }
+fun bindImage(imageView: ImageView, pictureOfDay: LiveData<PictureState>){
+    imageView.load(pictureOfDay.value?.pictureUrl?.url)
 }
 
 @BindingAdapter("codename")
