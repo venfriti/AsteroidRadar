@@ -1,7 +1,12 @@
 # Asteroid Radar
 Asteroid Radar allows you to view a list of asteroids detected by NASA using the NASA NeoWs API, you can view all the detected asteroids in a period of time, their data (size, velocity, diameter and distance to Earth) and if they are potentially hazardous or not.
 
-The app retrieves data from two apis the NeoWs API for the list of asteroids and the APOD API for a picture of the day both free and open source.
+The app retrieves data from two APIs the NeoWs API for the list of asteroids and the APOD API for a picture of the day which are both free and open source.
+
+The application:
+* includes a main screen that consists of the picture of the day and the list of detected asteroids.
+* includes a menu that can filter the list of asteroids by day, week or all the saved asteroids.
+* includes a detail screen that shows more information about an asteroid clicked from the main screen.
 
 # Screenshots
 <p align="center">
