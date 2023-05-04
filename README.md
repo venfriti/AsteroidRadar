@@ -1,3 +1,6 @@
+# Asteroid Radar
+Asteroid Radar allows you to view a list of asteroids detected by NASA using the NASA NEOWS API, you can view all the detected asteroids in a period of time, their data (size, velocity, diameter and distance to Earth) and if they are potentially hazardous or not.
+
 # Screenshots
 <p align="center">
 <img src="https://user-images.githubusercontent.com/90982374/234612581-4df41c1a-eda8-4808-b628-3eaf3fb15b78.png" alt="Image description" width="230" height="500">
