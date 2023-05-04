@@ -6,10 +6,22 @@ The app retrieves data from two APIs the NeoWs API for the list of asteroids and
 The application:
 * downloads and parses data from the NASA NeoWs API and saves it into a database.
 * includes a main screen that consists of the picture of the day and the list of detected asteroids from the database.
-* includes a menu that can filter the list of asteroids by day, week or all the saved asteroids.
+* includes a menu that can filter the list of asteroids by day, week or show all the saved asteroids.
 * includes a detail screen that shows more information about an asteroid clicked from the main screen.
-* has a worker that caches(downloads and saves) asteroids in the background
-* works with multiple screen sizes and orientations abd also provides talk back and push button navigation.
+* has a worker that caches(downloads and saves) asteroids in the background once a day.
+* works with multiple screen sizes and orientations and also provides talk back and push button navigation.
+
+# Setup
+A demo api key is present in the project, To get additional requests you can get an api key at https://api.nasa.gov/ 
+
+# Used Libraries and Technologies
+Kotlin - Primary programming language.
+MVVM - Structured Model-View-ViewModel architecture.
+Kotlin Coroutines - Thread management and concurrency.
+Retrofit - Rest API calls
+Room - Local database management.
+AndroidX Components - Jetpack components.
+Coil - Loading remote images.
 
 # Screenshots
 <p align="center">
