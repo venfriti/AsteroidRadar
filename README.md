@@ -12,16 +12,18 @@ The application:
 * works with multiple screen sizes and orientations and also provides talk back and push button navigation.
 
 # Setup
-A demo api key is present in the project, To get additional requests you can get an api key at https://api.nasa.gov/ 
+A demo api key is present in the project, To get additional requests from the api,you can get an api key at https://api.nasa.gov/ and replace the demo key with yours
 
 # Used Libraries and Technologies
 Kotlin - Primary programming language.
 MVVM - Structured Model-View-ViewModel architecture.
+RecyclerView - Display lists.
 Kotlin Coroutines - Thread management and concurrency.
-Retrofit - Rest API calls
+Retrofit - Rest API calls.
 Room - Local database management.
 AndroidX Components - Jetpack components.
 Coil - Loading remote images.
+
 
 # Screenshots
 <p align="center">
