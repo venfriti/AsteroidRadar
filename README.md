@@ -16,12 +16,19 @@ A demo api key is present in the project, To get additional requests from the ap
 
 # Used Libraries and Technologies
 Kotlin - Primary programming language.
+
 MVVM - Structured Model-View-ViewModel architecture.
+
 RecyclerView - Display lists.
+
 Kotlin Coroutines - Thread management and concurrency.
+
 Retrofit - Rest API calls.
+
 Room - Local database management.
+
 AndroidX Components - Jetpack components.
+
 Coil - Loading remote images.
 
 
