@@ -15,21 +15,21 @@ The application:
 A demo api key is present in the project, To get additional requests from the api,you can get an api key at https://api.nasa.gov/ and replace the demo key with yours
 
 # Used Libraries and Technologies
-Kotlin - Primary programming language.
+[Kotlin](https://kotlinlang.org/) - Primary programming language.
 
-MVVM - Structured Model-View-ViewModel architecture.
+[MVVM](https://developer.android.com/topic/architecture) - Structured Model-View-ViewModel architecture.
 
-RecyclerView - Display lists.
+[RecyclerView](https://developer.android.com/develop/ui/views/layout/recyclerview) - Display lists.
 
-Kotlin Coroutines - Thread management and concurrency.
+[Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - Thread management and concurrency.
 
-Retrofit - Rest API calls.
+[Retrofit](https://github.com/square/retrofit) - Rest API calls.
 
-Room - Local database management.
+[Room](https://developer.android.com/training/data-storage/room/) - Local database management.
 
-AndroidX Components - Jetpack components.
+[AndroidX Components](https://developer.android.com/jetpack/androidx/) - Jetpack components.
 
-Coil - Loading remote images.
+[Coil](https://coil-kt.github.io/coil/) - Loading remote images.
 
 
 # Screenshots
