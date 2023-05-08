@@ -47,15 +47,15 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     return asteroidList
 }
 
-
 @SuppressLint("WeekBasedYear")
+val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+
+
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     val formattedDateList = ArrayList<String>()
-
     val calendar = Calendar.getInstance()
     for (i in 0..Constants.DEFAULT_END_DATE_DAYS) {
         val currentTime = calendar.time
-        val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
         formattedDateList.add(dateFormat.format(currentTime))
         calendar.add(Calendar.DAY_OF_YEAR, 1)
     }
@@ -63,29 +63,22 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
-@SuppressLint("WeekBasedYear")
 fun getToday(): String {
     val calendar = Calendar.getInstance()
     val currentTime = calendar.time
-    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
     return dateFormat.format(currentTime)
 }
 
-@SuppressLint("WeekBasedYear")
 fun getSeventhDay(): String {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.DAY_OF_YEAR, Constants.DEFAULT_END_DATE_DAYS)
     val currentTime = calendar.time
-    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
     return dateFormat.format(currentTime)
 }
 
 fun getYesterday(): String {
-    val yesterday = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        LocalDate.now().minusDays(1)
-    } else {
-        TODO("VERSION.SDK_INT < O")
-    }
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    return yesterday.format(formatter)
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DAY_OF_YEAR, -1)
+    val yesterday = calendar.time
+    return dateFormat.format(yesterday)
 }
