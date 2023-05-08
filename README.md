@@ -9,6 +9,7 @@ The application:
 * includes a menu that can filter the list of asteroids by day, week or show all the saved asteroids.
 * includes a detail screen that shows more information about an asteroid clicked from the main screen.
 * has a worker that caches(downloads and saves) asteroids in the background once a day.
+* has a worker that deletes asteroids from the previous day.
 * works with multiple screen sizes and orientations and also provides talk back and push button navigation.
 
 # Setup
