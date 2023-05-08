@@ -21,4 +21,7 @@ interface AsteroidDao {
 
     @Query("SELECT * FROM asteroid_database WHERE closeApproachDate = :today")
     suspend fun getTodayAsteroids(today: String): List<Asteroid>
+
+    @Query("DELETE FROM asteroid_database WHERE closeApproachDate = :yesterday")
+    suspend fun deleteYesterdayAsteroids(yesterday: String)
 }

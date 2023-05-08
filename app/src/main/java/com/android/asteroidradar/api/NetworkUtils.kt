@@ -1,10 +1,13 @@
 package com.android.asteroidradar.api
 
 import android.annotation.SuppressLint
+import android.os.Build
 import com.android.asteroidradar.models.Asteroid
 import com.android.asteroidradar.utils.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -75,4 +78,14 @@ fun getSeventhDay(): String {
     val currentTime = calendar.time
     val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
     return dateFormat.format(currentTime)
+}
+
+fun getYesterday(): String {
+    val yesterday = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        LocalDate.now().minusDays(1)
+    } else {
+        TODO("VERSION.SDK_INT < O")
+    }
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    return yesterday.format(formatter)
 }

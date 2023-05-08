@@ -6,6 +6,7 @@ import androidx.work.WorkerParameters
 import com.android.asteroidradar.api.NetworkRequest
 import com.android.asteroidradar.api.getSeventhDay
 import com.android.asteroidradar.api.getToday
+import com.android.asteroidradar.api.getYesterday
 import com.android.asteroidradar.api.parseAsteroidsJsonResult
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -45,9 +46,8 @@ class RefreshAsteroidsWork(appContext: Context, params: WorkerParameters):
             val listAsteroids = parseAsteroidsJsonResult(jsonResult)
 
             asteroidDao.insertAsteroids(listAsteroids)
-
             pictureDao.insertPicture(network.service.getPictureOfTheDay())
-
+            asteroidDao.deleteYesterdayAsteroids(getYesterday())
             Result.success()
         } catch (e: HttpException){
             Result.retry()
