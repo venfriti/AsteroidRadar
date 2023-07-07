@@ -12,6 +12,9 @@ interface PictureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPicture(picture: PictureOfDay)
 
+    @Query("SELECT * FROM picture_database WHERE url=:url")
+    suspend fun getPicture(url: String): PictureOfDay
+
     @Query("SELECT * FROM picture_database")
-    suspend fun getPicture(): PictureOfDay
+    suspend fun getSavedPicture(): PictureOfDay
 }

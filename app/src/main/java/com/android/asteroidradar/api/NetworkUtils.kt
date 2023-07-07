@@ -47,7 +47,7 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     return asteroidList
 }
 
-@SuppressLint("WeekBasedYear")
+@SuppressLint("WeekBasedYear", "ConstantLocale")
 val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
 
 

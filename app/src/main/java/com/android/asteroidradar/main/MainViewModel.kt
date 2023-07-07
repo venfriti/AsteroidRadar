@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.android.asteroidradar.api.NetworkRequest
 import com.android.asteroidradar.api.getSeventhDay
 import com.android.asteroidradar.api.getToday
-import com.android.asteroidradar.api.getYesterday
 import com.android.asteroidradar.api.parseAsteroidsJsonResult
 import com.google.gson.JsonParser
 import com.android.asteroidradar.models.Asteroid
@@ -62,10 +61,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         try {
             val response = network.service.getPictureOfTheDay()
             pictureDao.insertPicture(response)
-            pictureDao.getPicture()
+            pictureDao.getPicture(response.url)
         } catch (e: Exception) {
             e.printStackTrace()
-            pictureDao.getPicture()
+            pictureDao.getSavedPicture()
         }
     }
 
