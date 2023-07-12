@@ -13,7 +13,7 @@ The application:
 * works with multiple screen sizes and orientations and also provides talk back and push button navigation.
 
 # Setup
-A demo api key is present in the project for testing, To get additional requests from the api, you can also get an api key at https://api.nasa.gov/ and replace the demo key with yours.
+A demo api key is present in the project for testing, To get additional requests from the api, you could get an api key at https://api.nasa.gov/ and replace the demo key with yours.
 
 # Used Libraries and Technologies
 [Kotlin](https://kotlinlang.org/) - Primary programming language.
