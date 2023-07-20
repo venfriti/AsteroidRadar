@@ -15,6 +15,6 @@ interface PictureDao {
     @Query("SELECT * FROM picture_database WHERE url=:url")
     suspend fun getPicture(url: String): PictureOfDay
 
-    @Query("SELECT * FROM picture_database")
+    @Query("SELECT * FROM picture_database ORDER BY date DESC")
     suspend fun getSavedPicture(): PictureOfDay
 }

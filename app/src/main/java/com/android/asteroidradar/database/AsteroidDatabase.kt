@@ -8,7 +8,7 @@ import com.android.asteroidradar.models.Asteroid
 import com.android.asteroidradar.models.PictureOfDay
 
 
-@Database(entities = [Asteroid::class, PictureOfDay::class], version = 7, exportSchema = false)
+@Database(entities = [Asteroid::class, PictureOfDay::class], version = 8, exportSchema = false)
 abstract class AsteroidDatabase : RoomDatabase() {
 
     abstract fun asteroidDao() : AsteroidDao

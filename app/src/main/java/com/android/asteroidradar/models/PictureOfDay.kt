@@ -9,4 +9,5 @@ import com.squareup.moshi.Json
 data class PictureOfDay(
     @ColumnInfo(name = "media_type") @Json(name = "media_type") val mediaType: String? ="",
     @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "date") val date: String,
     @PrimaryKey val url: String)
