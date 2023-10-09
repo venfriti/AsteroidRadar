@@ -35,7 +35,7 @@ A demo api key is present in the project for testing, To get additional requests
 
 # Screenshots
 <p align="center">
-<img src="https://user-images.githubusercontent.com/90982374/234612581-4df41c1a-eda8-4808-b628-3eaf3fb15b78.png" alt="Image description" width="230" height="500">
-<img src="https://user-images.githubusercontent.com/90982374/234612682-45ae47c0-c33d-49c9-bde2-63d373e9c110.png" alt="Image description" width="230" height="500">
-<img src="https://user-images.githubusercontent.com/90982374/234612752-67ce22ea-43a6-4cac-9743-ac64e6315f22.png" alt="Image description" width="230" height="500">
-</p>
+<img src="https://github.com/venfriti/asteroid-radar/assets/90982374/f95211d1-a09f-445f-b72d-955f060601ca" alt="Image description" width="230" height="500">
+<img src="https://github.com/venfriti/asteroid-radar/assets/90982374/d14177fe-bbd1-4be5-889c-2cf408a559e3" alt="Image description" width="230" height="500">
+<img src="https://github.com/venfriti/asteroid-radar/assets/90982374/e58554f2-d172-4034-8b9b-81ca9dd64e9f" alt="Image description" width="230" height="500">
+
